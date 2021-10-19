@@ -97,9 +97,6 @@ function game() {
     return roll
 }
 
-//game();
-//game();
-
 function ClickStart() {
     const NumberOfTimes = document.getElementById("number").value;
     let Game_Result = []
@@ -113,7 +110,7 @@ function ClickStart() {
 
     for (let i = 0; i < Game_Result.length; i++) {
         Total = Game_Result[i] + Total;
-        console.log(Total)
+        //console.log(Total)
     } 
     let Average = Total / Game_Result.length;
     console.log(Average);
@@ -122,7 +119,7 @@ function ClickStart() {
 }
 
 function ResultTable(data1, data2) {
-    test1 = document.createElement("p")
-    test = document.getElementById("result")
-    test.appendChild(test1)
+    result_element = document.createElement("h1")
+    result_div = document.getElementById("result")
+    result_div.appendChild(result_element)
 }
