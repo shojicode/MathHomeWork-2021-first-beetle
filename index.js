@@ -21,7 +21,7 @@ class Beetle {
     }
 }
 
-function game() {
+function Game() {
     let BeetleInstance = new Beetle();
     const Loop = 1;
     while (Loop === 1) {
