@@ -1,55 +1,51 @@
-function dice() {
-    const roll = Math.floor(Math.random() * 6) + 1;
-    return roll;
+function Dice() {
+    const Roll = Math.floor(Math.random() * 6) + 1;
+    return Roll;
 }
 
-class beetle {
+class Beetle {
     constructor() {
-        this.roll = 0;
-        this.one = 0;
-        this.two = 0;
-        this.three = 0;
-        this.four = 0;
-        this.five = 0;
-        this.six = 0;
-        this.head = false;
-        this.body = false;
-        this.antennae = false;
-        this.tail = false;
-        this.leg = false;
-        this.eye = false;
+        this.Roll = 0;
+        this.One = 0;
+        this.Two = 0;
+        this.Three = 0;
+        this.Four = 0;
+        this.Five = 0;
+        this.Six = 0;
+        this.Head = false;
+        this.Body = false;
+        this.Antennae = false;
+        this.Tail = false;
+        this.Leg = false;
+        this.Eye = false;
     }
 }
 
 function game() {
-    let beetleinstance = new beetle();
-    const loop = 1;
-    loop:
-    while (loop === 1) {
-        num = dice()
-        ++beetleinstance.roll;
-        if (num === 6 && beetleinstance.body === false) {
-            beetleinstance.body = true;
-            console.log("Body " + beetleinstance.roll)
+    let BeetleInstance = new Beetle();
+    const Loop = 1;
+    while (Loop === 1) {
+        Num = Dice();
+        ++BeetleInstance.roll;
+        if (Num === 6 && BeetleInstance.Body === false) {
+            BeetleInstance.Body = true;
         }
 
-        if (beetleinstance.body === true) {
-            switch (num) {
+        if (BeetleInstance.Body === true) {
+            switch (Num) {
                 case 3:
-                    ++beetleinstance.three;
+                    ++BeetleInstance.Three;
                     break;
                 case 4:
-                    ++beetleinstance.four;
-                    if (beetleinstance.tail === false) {
-                        beetleinstance.tail = true;
-                        console.log("tail " + beetleinstance.roll)   
+                    ++BeetleInstance.Four;
+                    if (BeetleInstance.Tail === false) {
+                        BeetleInstance.Tail = true;   
                     }
                     break;
                 case 5:
-                    ++beetleinstance.five;
-                    if(beetleinstance.head === false) {
-                        beetleinstance.head = true;
-                        console.log("Head " + beetleinstance.roll);
+                    ++BeetleInstance.Five;
+                    if(BeetleInstance.Head === false) {
+                        BeetleInstance.Head = true;
                     }
                     break;
                 default:
@@ -57,72 +53,69 @@ function game() {
             }
         }
 
-        if (beetleinstance.head === true) {
-            switch (num) {
+        if (BeetleInstance.Head === true) {
+            switch (Num) {
                 case 1:
-                    ++beetleinstance.one;
+                    ++BeetleInstance.One;
                 break;
                 case 2:
-                    ++beetleinstance.two;
+                    ++BeetleInstance.Two;
                     break;
                 default:
                     break;
             }
         }
 
-        if (beetleinstance.one === 2 && beetleinstance.eye === false) {
-            beetleinstance.eye = true
-            console.log("eye " + beetleinstance.roll)
+        if (BeetleInstance.One === 2 && BeetleInstance.Eye === false) {
+            BeetleInstance.Eye = true;
         }
-        if (beetleinstance.two === 2 && beetleinstance.antennae === false) {
-            beetleinstance.antennae = true;
-            console.log("antennae" + beetleinstance.roll)
+        if (BeetleInstance.Two === 2 && BeetleInstance.Antennae === false) {
+            BeetleInstance.Antennae = true;
         }
 
-        if (beetleinstance.three === 4 && beetleinstance.leg === false) {
-            beetleinstance.leg = true
-            console.log("leg " + beetleinstance.roll)
+        if (BeetleInstance.Three === 4 && BeetleInstance.Leg === false) {
+            BeetleInstance.Leg = true;
         }
 
-        if (beetleinstance.antennae === true && beetleinstance.eye === true && beetleinstance.leg === true && beetleinstance.tail === true && beetleinstance.head === true && beetleinstance.body === true) {
-            console.log("You win! " + beetleinstance.roll)
-            break loop;
+        if (BeetleInstance.Antennae === true && BeetleInstance.Eye === true && BeetleInstance.Leg === true && BeetleInstance.Tail === true && BeetleInstance.Head === true && BeetleInstance.Body === true) {
+            console.log("You win! " + BeetleInstance.Roll);
+            break;
         }
     }
     
-    roll = beetleinstance.roll;
+    Roll = BeetleInstance.Roll;
 
-    delete beetleinstance;
+    delete BeetleInstance;
 
-    return roll
+    return Roll;
 }
-
-//game();
-//game();
 
 function ClickStart() {
     const NumberOfTimes = document.getElementById("number").value;
-    let Game_Result = []
+    let GameResult = [];
     for (let i = 0; i < NumberOfTimes; i++) {
-        Result = game();
-        Game_Result.push(Result);
-        console.log(Game_Result);
+        Result = Game();
+        GameResult.push(Result);
     }
 
     let Total = 0;
 
     for (let i = 0; i < Game_Result.length; i++) {
         Total = Game_Result[i] + Total;
-        console.log(Total)
-    } 
-    let Average = Total / Game_Result.length;
-    console.log(Average);
-    ResultTable(Game_Result, Average);
-    return Average
+    }
+    let Average = Math.round(Total / GameResult.length);
+    ResultDisplay(Average, NumberOfTimes);
+    return {
+        Average: Average,
+        NumberOfTimes: NumberOfTimes
+    };
 }
 
-function ResultTable(data1, data2) {
-    test1 = document.createElement("p")
-    test = document.getElementById("result")
-    test.appendChild(test1)
+function ResultDisplay(Result, NumberOfTimes) {
+    const ResultArea = document.getElementById("resultdisplay");
+    if (NumberOfTimes === "1") {
+        ResultArea.innerHTML = `${NumberOfTimes}回実行しました<br>結果：カブトムシが完成するまで、${Result}回サイコロを振りました。`;
+    } else {
+        ResultArea.innerHTML = `${NumberOfTimes}回実行しました。<br>結果：カブトムシが完成するまで、平均${Result}回（小数点以下四捨五入）サイコロを振りました。`;
+    }
 }
