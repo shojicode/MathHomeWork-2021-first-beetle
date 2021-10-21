@@ -26,7 +26,7 @@ function Game() {
     const Loop = 1;
     while (Loop === 1) {
         Num = Dice();
-        ++BeetleInstance.roll;
+        ++BeetleInstance.Roll;
         if (Num === 6 && BeetleInstance.Body === false) {
             BeetleInstance.Body = true;
         }
