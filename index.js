@@ -30,7 +30,7 @@ function game() {
         ++beetleinstance.roll;
         if (num === 6 && beetleinstance.body === false) {
             beetleinstance.body = true;
-            console.log("Body " + beetleinstance.roll)
+        //    console.log("Body " + beetleinstance.roll)
         }
 
         if (beetleinstance.body === true) {
@@ -42,14 +42,14 @@ function game() {
                     ++beetleinstance.four;
                     if (beetleinstance.tail === false) {
                         beetleinstance.tail = true;
-                        console.log("tail " + beetleinstance.roll)   
+        //                console.log("tail " + beetleinstance.roll)   
                     }
                     break;
                 case 5:
                     ++beetleinstance.five;
                     if(beetleinstance.head === false) {
                         beetleinstance.head = true;
-                        console.log("Head " + beetleinstance.roll);
+        //                console.log("Head " + beetleinstance.roll);
                     }
                     break;
                 default:
@@ -72,16 +72,16 @@ function game() {
 
         if (beetleinstance.one === 2 && beetleinstance.eye === false) {
             beetleinstance.eye = true
-            console.log("eye " + beetleinstance.roll)
+        //    console.log("eye " + beetleinstance.roll)
         }
         if (beetleinstance.two === 2 && beetleinstance.antennae === false) {
             beetleinstance.antennae = true;
-            console.log("antennae" + beetleinstance.roll)
+        //    console.log("antennae" + beetleinstance.roll)
         }
 
         if (beetleinstance.three === 4 && beetleinstance.leg === false) {
             beetleinstance.leg = true
-            console.log("leg " + beetleinstance.roll)
+        //    console.log("leg " + beetleinstance.roll)
         }
 
         if (beetleinstance.antennae === true && beetleinstance.eye === true && beetleinstance.leg === true && beetleinstance.tail === true && beetleinstance.head === true && beetleinstance.body === true) {
@@ -103,7 +103,7 @@ function ClickStart() {
     for (let i = 0; i < NumberOfTimes; i++) {
         Result = game();
         Game_Result.push(Result);
-        console.log(Game_Result);
+    //    console.log(Game_Result);
     }
 
     let Total = 0;
@@ -111,8 +111,8 @@ function ClickStart() {
     for (let i = 0; i < Game_Result.length; i++) {
         Total = Game_Result[i] + Total;
     }
-    let Average = Total / Game_Result.length;
-    console.log(Average);
+    let Average = Math.round(Total / Game_Result.length);
+    //console.log(Average);
     Result_Display(Average, NumberOfTimes);
     return {
         Average: Average,
@@ -122,5 +122,9 @@ function ClickStart() {
 
 function Result_Display(Result, NumberOfTimes) {
     const ResultArea = document.getElementById("resultdisplay");
-    ResultArea.innerHTML = `${NumberOfTimes}回実行しました。<br>${Result}`
+    if (NumberOfTimes === "1") {
+        ResultArea.innerHTML = `${NumberOfTimes}回実行しました<br>結果：カブトムシが完成するまで、${Result}回サイコロを振りました。`
+    } else {
+        ResultArea.innerHTML = `${NumberOfTimes}回実行しました。<br>結果：カブトムシが完成するまで、平均${Result}回（小数点以下四捨五入）サイコロを振りました。`
+    }
 }
