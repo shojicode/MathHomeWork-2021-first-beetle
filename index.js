@@ -110,16 +110,17 @@ function ClickStart() {
 
     for (let i = 0; i < Game_Result.length; i++) {
         Total = Game_Result[i] + Total;
-        //console.log(Total)
-    } 
+    }
     let Average = Total / Game_Result.length;
     console.log(Average);
-    ResultTable(Game_Result, Average);
-    return Average
+    Result_Display(Average, NumberOfTimes);
+    return {
+        Average: Average,
+        NumberOfTimes: NumberOfTimes
+    };
 }
 
-function ResultTable(data1, data2) {
-    result_element = document.createElement("h1")
-    result_div = document.getElementById("result")
-    result_div.appendChild(result_element)
+function Result_Display(Result, NumberOfTimes) {
+    const ResultArea = document.getElementById("resultdisplay");
+    ResultArea.innerHTML = `${NumberOfTimes}回実行しました。<br>${Result}`
 }
