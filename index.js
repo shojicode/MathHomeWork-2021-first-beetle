@@ -100,8 +100,8 @@ function ClickStart() {
 
     let Total = 0;
 
-    for (let i = 0; i < Game_Result.length; i++) {
-        Total = Game_Result[i] + Total;
+    for (let i = 0; i < GameResult.length; i++) {
+        Total = GameResult[i] + Total;
     }
     let Average = Math.round(Total / GameResult.length);
     ResultDisplay(Average, NumberOfTimes);
